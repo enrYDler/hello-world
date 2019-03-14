@@ -1,0 +1,145 @@
+/**
+ * Classe Carta che mette a disposizione dei metodi per utilizzare insieme Semi e Valori
+ * @author Manzi Enrico, Corradin Davide, Zaghetto Beniamino, Brugnaro Andrea, Romano Jacopo
+ * @version 1.0 28-02-2019
+ */
+public class Carta {
+
+    private Seme sem;
+    private Valore val;
+
+/**
+ * Costruttore con parametro un Seme e un Valore che imposta la carta come da inserimento
+ * @param s Seme da impostare
+ * @param v Valore da impostare
+ */
+
+    public Carta(Seme s, Valore v){
+
+        sem = s;
+        val = v;
+
+    }
+/**
+ * Costruttore con parametro 2 interi che imposta seme e valore della carta
+ * @param si intero relativo al seme
+ * @param vi intero relativo al valore 
+*/
+    public Carta(int si, int vi) throws CartaNonValidaEcc{
+
+        try {
+            sem = new Seme(si);
+            val = new Valore(vi);
+        }
+        catch(CartaNonValidaEcc e){
+
+            throw new CartaNonValidaEcc();
+
+        }
+
+    }
+/**
+ * Costruttore senza parametri che imposta la carta all'asso di bastoni.
+*/
+    public Carta() throws CartaNonValidaEcc{
+
+        try{
+        sem.setS(Seme.BASTONI);
+        val.setV(Valore.ASSO);
+		}
+		catch(CartaNonValidaEcc e){
+			
+			throw new CartaNonValidaEcc();
+			
+			}
+
+    }
+
+/**
+ * Metodo getSem che restituisce il seme della carta
+ * @return seme della carta
+*/
+
+    public Seme getSem(){
+
+        return sem;
+
+    }
+
+/**
+ * Metodo getVal che restituisce il valore della carta.
+ * @return valore dellla carta
+*/
+
+    public Valore getVal(){
+
+        return val;
+
+    }
+
+/**
+ * Metodo setSem con parametro un seme, imposta il seme della carta.
+ * @param s Seme da impostare
+*/
+
+    public void setSem(Seme s){
+
+        sem = s;
+
+    }
+/**
+ * Metodo setSem con parametro un intero, imposta il seme della carta.
+ * @param si intero di cui sapere e assegnare il seme corrispondente.
+*/
+    public void setSem(int si) throws CartaNonValidaEcc{
+
+        try {
+            sem = new Seme(si);
+        }
+        catch(CartaNonValidaEcc e){
+            throw new CartaNonValidaEcc();
+        }
+
+    }
+
+/**
+ * Metodo setVal con parametro un valore, imposta quel valore alla carta.
+ * @param v Valore da impostare
+*/
+
+    public void setVal(Valore v){
+
+        val = v;
+
+    }
+
+/**
+ * Metodo setVal con parametro un intero, imposta il valore alla carta.
+ * @param vi intero di cui trovare e assegnare il valore
+*/
+
+    public void setVal(int vi) throws CartaNonValidaEcc{
+
+        try{
+
+            val.setV(vi);
+
+        }
+        catch(CartaNonValidaEcc e){
+            throw new CartaNonValidaEcc();
+        }
+
+    }
+
+/**
+ * Metodo cartaStringa che restituisce la carta sottoforma di stringa, con seme e valore.
+ * @return Stringa della carta.
+*/
+
+    public String cartaStringa(){
+
+        return val.getV() + " di " + sem.semeStringa();
+
+    }
+
+}
